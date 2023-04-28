@@ -1,3 +1,25 @@
 <resources>
-    <string name="app_name">ebusapp</string>
+    <string name="app_name">EBus</string>
+    <string name="signup_page_label">Sign up</string>
+    <string name="signup_email_id_lbl">Email ID</string>
+    <string name="signup_fullname_lbl">Full name</string>
+    <string name="signup_mobile">Mobile</string>
+    <string name="signup_password_lbl">Password</string>
+    <string name="signup_confirm_pw_lbl">Confirm Password</string>
+    <string name="person_icon">person icon</string>
+    <string name="at_sign">at sign</string>
+    <string name="signup_main_banner_image">signup main banner image</string>
+    <string name="mobile_icon">mobile icon\n</string>
+    <string name="password_icon">password icon</string>
+    <string name="confirm_password_icon">confirm password lock outline icon</string>
+    <string name="signup_button_lbl">Sign up</string>
+    <string name="login_page_banner_img">login page banner image\n</string>
+    <string name="login_heading">Login</string>
+    <string name="email_icon_desc">email icon</string>
+    <string name="login_email_field_lbl">Email ID</string>
+    <string name="password_icon_desc">password icon</string>
+    <string name="password_login_hint">Password</string>
+    <string name="login_btn_lbl">Login</string>
+    <string name="or">or</string>
+    <string name="signup_link_lbl">Tap here to sign up!</string>
 </resources>

@@ -4,15 +4,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="16dp"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/login_banner"
+        android:layout_width="380dp"
+        android:layout_height="290dp"
+        android:contentDescription="@string/login_page_banner_img"
+        android:layout_marginTop="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/capa_1"
+        />
+
     <TextView
+        android:id="@+id/login_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/login_heading"
+        style="@style/title1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="373dp"
+        />
+
+    <ImageView
+        android:id="@+id/email_icon"
+        style="@style/input_icons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_heading"
+        android:layout_marginTop="24dp"
+        app:srcCompat="@drawable/ic_text_input_set"
+        android:contentDescription="@string/email_icon_desc"
+        />
+
+    <EditText
+        android:id="@+id/emailid_login"
+        style="@style/inputfield"
+        android:hint="@string/login_email_field_lbl"
+        app:layout_constraintTop_toBottomOf="@+id/login_heading"
+        app:layout_constraintStart_toStartOf="parent"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="10dp"
+        android:autofillHints="Email ID" />
+
+    <ImageView
+        android:id="@+id/password_icon"
+        style="@style/input_icons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_icon"
+        android:layout_marginTop="32dp"
+        app:srcCompat="@drawable/ic_text_input_set4"
+        android:contentDescription="@string/password_icon_desc"
+        />
+
+    <EditText
+        android:id="@+id/password_login"
+        style="@style/inputfield"
+        android:hint="@string/password_login_hint"
+        app:layout_constraintTop_toBottomOf="@+id/emailid_login"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"
+        android:inputType="textPassword"
+        android:autofillHints="Password" />
+
+    <Button
+        android:id="@+id/login_btn"
+        style="@style/custom_btn"
+        android:text="@string/login_btn_lbl"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_login"
+        android:layout_marginTop="16dp"
+        />
+
+    <TextView
+        android:id="@+id/or_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/or"
+        style="@style/bodyText"
+        app:layout_constraintTop_toBottomOf="@+id/login_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        />
+
+    <TextView
+        android:id="@+id/sign_up_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/signup_link_lbl"
+        style="@style/heading4"
+        app:layout_constraintTop_toBottomOf="@+id/or_txt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
