@@ -48,7 +48,7 @@
         android:layout_marginTop="4dp"
         android:autofillHints="true"
         android:hint="@string/signup_mobile"
-        android:inputType="textEmailAddress"
+        android:inputType="phone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fullname" />
 
@@ -128,7 +128,7 @@
         app:srcCompat="@drawable/ic_text_input_set5" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/register"
         style="@style/custom_btn"
         android:text="@string/signup_button_lbl"
         android:layout_marginTop="16dp"
