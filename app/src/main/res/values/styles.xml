@@ -6,6 +6,10 @@
         <item name="android:textSize">64sp</item>
     </style>
 
+    <style name="title2" parent="title1">
+        <item name="android:textSize">48sp</item>
+    </style>
+
     <style name="heading4" parent="TextAppearance.AppCompat.Body1">
         <item name="fontFamily">@font/roboto_thin</item>
         <item name="android:textSize">24sp</item>
@@ -46,5 +50,10 @@
         <item name="android:layout_width">365dp</item>
         <item name="android:layout_height">68dp</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="roundedImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 </resources>

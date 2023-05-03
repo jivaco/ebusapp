@@ -1,10 +1,5 @@
 package com.ranmal.ebusapp;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,9 +7,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.ranmal.ebusapp.containers.AppContainer;
-import com.ranmal.ebusapp.repositories.RegistrationRepository;
-import com.ranmal.ebusapp.repositories.RegistrationRepositoryImplementation;
 import com.ranmal.ebusapp.viewmodels.RegistrationViewModel;
 
 public class SignUp extends AppCompatActivity {
@@ -35,20 +33,13 @@ public class SignUp extends AppCompatActivity {
         // Setup di for the viewmodel
         EBusApplication application = (EBusApplication) getApplication();
         AppContainer appContainer = application.appContainer;
-        RegistrationRepository registrationRepository = new RegistrationRepositoryImplementation(
-                appContainer.executorService,
-                appContainer.networkContainer.api
-        );
         // Setup observer for livedata
         model = new ViewModelProvider(this).get(RegistrationViewModel.class);
-        model.setRepository(registrationRepository);
-        final Observer<String> registrationMessageObserver = new Observer<String>() {
-            @Override
-            public void onChanged(String newRegistrationMessage) {
-                Toast.makeText(getApplicationContext(), newRegistrationMessage, Toast.LENGTH_LONG).show();
-                if (newRegistrationMessage.contains("Success")) {
-                    new Handler().postDelayed(() -> switchToLoginAfterRegistration(), 3500);
-                }
+        model.setRepository(appContainer.registrationRepository);
+        final Observer<String> registrationMessageObserver = newRegistrationMessage -> {
+            Toast.makeText(getApplicationContext(), newRegistrationMessage, Toast.LENGTH_LONG).show();
+            if (newRegistrationMessage.contains("Success")) {
+                new Handler().postDelayed(this::switchToLoginAfterRegistration, 3500);
             }
         };
         model.getRegistrationMessage().observe(this, registrationMessageObserver);
@@ -76,7 +67,7 @@ public class SignUp extends AppCompatActivity {
     }
 
     private void switchToLoginAfterRegistration() {
-        Intent loginIntent = new Intent(this, MainActivity.class);
+        Intent loginIntent = new Intent(this, LoginActivity.class);
         loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(loginIntent);
     }

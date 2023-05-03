@@ -22,4 +22,9 @@
     <string name="login_btn_lbl">Login</string>
     <string name="or">or</string>
     <string name="signup_link_lbl">Tap here to sign up!</string>
+    <string name="find_routes_heading">Find your bus</string>
+    <string name="search_icon">search icon</string>
+    <string name="where_to">Where to?</string>
+    <string name="find_routes_btn_lbl">Let\'s go!</string>
+    <string name="bus_info">Bus info</string>
 </resources>
