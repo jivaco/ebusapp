@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:paddingHorizontal="16dp"
+    tools:context=".SignUp">
+
+    <TextView
+        android:id="@+id/signup"
+        style="@style/title1"
+        android:layout_width="216dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="267dp"
+        android:gravity="top"
+        android:text="@string/signup_page_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/emailid"
+        style="@style/inputfield"
+        android:layout_marginTop="16dp"
+        android:autofillHints="true"
+        android:hint="@string/signup_email_id_lbl"
+        android:inputType="textEmailAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup" />
+
+    <EditText
+        android:id="@+id/fullname"
+        style="@style/inputfield"
+        android:layout_marginTop="4dp"
+        android:autofillHints="true"
+        android:hint="@string/signup_fullname_lbl"
+        android:inputType="textWebEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailid" />
+
+
+    <EditText
+        android:id="@+id/mobile"
+        style="@style/inputfield"
+        android:layout_marginTop="4dp"
+        android:autofillHints="true"
+        android:hint="@string/signup_mobile"
+        android:inputType="phone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fullname" />
+
+    <EditText
+        android:id="@+id/password"
+        style="@style/inputfield"
+        android:layout_marginTop="4dp"
+        android:autofillHints="true"
+        android:hint="@string/signup_password_lbl"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mobile" />
+
+    <EditText
+        android:id="@+id/confirm_password"
+        style="@style/inputfield"
+        android:layout_marginTop="4dp"
+        android:autofillHints="true"
+        android:hint="@string/signup_confirm_pw_lbl"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
+
+    <ImageView
+        android:id="@+id/signup_main_banner"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/signup_main_banner_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/signup_img" />
+
+    <ImageView
+        android:id="@+id/at"
+        style="@style/input_icons"
+        android:layout_marginTop="390dp"
+        android:contentDescription="@string/at_sign"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_text_input_set" />
+
+    <ImageView
+        android:id="@+id/person_icon"
+        style="@style/input_icons"
+        android:layout_marginTop="30dp"
+        android:contentDescription="@string/person_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/at"
+        app:srcCompat="@drawable/ic_text_input_set2" />
+
+    <ImageView
+        android:id="@+id/mobile_icon"
+        style="@style/input_icons"
+        android:layout_marginTop="30dp"
+        android:contentDescription="@string/mobile_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/person_icon"
+        app:srcCompat="@drawable/ic_text_input_set3" />
+
+    <ImageView
+        android:id="@+id/password_icon"
+        style="@style/input_icons"
+        android:layout_marginTop="30dp"
+        android:contentDescription="@string/password_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mobile_icon"
+        app:srcCompat="@drawable/ic_text_input_set4" />
+
+    <ImageView
+        android:id="@+id/confirm_password_icon"
+        style="@style/input_icons"
+        android:layout_marginTop="30dp"
+        android:contentDescription="@string/confirm_password_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password_icon"
+        app:srcCompat="@drawable/ic_text_input_set5" />
+
+    <Button
+        android:id="@+id/register"
+        style="@style/custom_btn"
+        android:text="@string/signup_button_lbl"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirm_password" />
+</androidx.constraintlayout.widget.ConstraintLayout>
