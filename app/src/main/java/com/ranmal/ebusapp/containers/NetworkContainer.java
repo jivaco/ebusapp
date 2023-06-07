@@ -5,7 +5,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkContainer {
-    private static final String BASE_URL = "http://192.168.1.6:8080";
+    private static final String BASE_URL = "http://192.168.85.253:8080";
     public Retrofit retrofit = new Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:elevation="0dp"
-    tools:context=".FindRoutesActivity">
+    tools:context=".CurrentTripActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map_find_routes"
@@ -14,17 +13,6 @@
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/logout_btn"
-        style="@style/custom_btn_secondary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/logout_lbl" />
 
     <LinearLayout
         android:id="@+id/find_route_form"
@@ -41,33 +29,38 @@
         <TextView
             android:id="@+id/find_routes_heading"
             style="@style/title2"
+            android:textSize="32sp"
+            android:textAlignment="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/find_routes_heading"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="@string/current_trip_heading"
+            android:layout_gravity="center" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/search_bar_find_routes"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/time_est"
+            style="@style/heading4"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/find_routes_btn"
-                style="@style/custom_btn"
-                android:text="@string/find_routes_btn_lbl"
-                android:drawableStart="@drawable/search"
-                android:padding="16dp"
-                android:layout_width="320dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+            android:text="@string/est_arrival"
+            android:paddingVertical="16dp"
+            android:layout_gravity="center" />
+        <TextView
+            android:id="@+id/status_lbl"
+            style="@style/bodyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status_lbl"
+            android:paddingVertical="16dp"
+            android:layout_gravity="center" />
+        <TextView
+            android:id="@+id/status"
+            style="@style/bodyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFA500"
+            android:text="@string/status"
+            android:paddingVertical="16dp"
+            android:layout_gravity="center" />
 
     </LinearLayout>
 
@@ -76,6 +69,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="470dp" />
+        app:layout_constraintGuide_begin="420dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

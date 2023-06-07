@@ -1,6 +1,8 @@
 package com.ranmal.ebusapp.repositories;
 
 
+import android.util.Log;
+
 import com.ranmal.ebusapp.containers.Api;
 import com.ranmal.ebusapp.schemas.UserDTO;
 
@@ -11,7 +13,6 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 public class RegistrationRepositoryImplementation implements RegistrationRepository {
-
     private final Executor executor;
     private final Api api;
 
@@ -48,6 +49,7 @@ public class RegistrationRepositoryImplementation implements RegistrationReposit
             try {
                 response = makeRegistrationRequestSync(userDTO);
             } catch (IOException e) {
+                Log.d("Registration", e.toString());
                 throw new RuntimeException(e);
             }
             callback.onComplete(response);

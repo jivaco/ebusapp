@@ -25,6 +25,22 @@
     <string name="find_routes_heading">Find your bus</string>
     <string name="search_icon">search icon</string>
     <string name="where_to">Where to?</string>
-    <string name="find_routes_btn_lbl">Let\'s go!</string>
+    <string name="find_routes_btn_lbl">Search a route</string>
     <string name="bus_info">Bus info</string>
+    <string name="app_label">EBus\n</string>
+    <string name="logout_lbl">Logout</string>
+    <string name="routes_heading">Routes</string>
+    <string name="location_placeholder">Your location</string>
+    <string name="destination_placeholder">Your destination</string>
+    <string name="to_label">to</string>
+    <string name="routes_instructions">Pick your bus.\nTap a route to view bus information.</string>
+    <string name="driver_lbl">Driver</string>
+    <string name="conductor_lbl">Conductor</string>
+    <string name="driver_details_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="vehicle_number">XXXXXX - XXX</string>
+    <string name="current_trip_heading">On your way!</string>
+    <string name="est_arrival">Est. Arrival: 14.30</string>
+    <string name="status_lbl">Status:</string>
+    <string name="status">Still travelling</string>
+    <string name="start_trip">Start Trip</string>
 </resources>

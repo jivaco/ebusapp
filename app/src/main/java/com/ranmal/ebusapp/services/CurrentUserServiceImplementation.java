@@ -1,93 +1,92 @@
 package com.ranmal.ebusapp.services;
 
+import android.util.Log;
+
 import com.ranmal.ebusapp.containers.Api;
-import com.ranmal.ebusapp.database.User;
+import com.ranmal.ebusapp.schemas.User;
 import com.ranmal.ebusapp.repositories.GenericNetworkResponse;
-import com.ranmal.ebusapp.repositories.LoginRepository;
 import com.ranmal.ebusapp.repositories.RepositoryCallback;
 import com.ranmal.ebusapp.repositories.UserRepository;
-import com.ranmal.ebusapp.schemas.LoginUser;
+import com.ranmal.ebusapp.schemas.AuthenticationResponse;
 
-import java.util.List;
+import java.io.IOException;
 import java.util.concurrent.Executor;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 
 public class CurrentUserServiceImplementation implements CurrentUserService {
 
     private final UserRepository userRepository;
-    private final LoginRepository loginRepository;
-    private final Executor executor;
     private final Api api;
+    private final Executor executor;
 
-    public CurrentUserServiceImplementation(UserRepository userRepository, LoginRepository loginRepository, Executor executor, Api api) {
+    public CurrentUserServiceImplementation(UserRepository userRepository, Api api, Executor executor) {
         this.userRepository = userRepository;
-        this.loginRepository = loginRepository;
-        this.executor = executor;
         this.api = api;
+        this.executor = executor;
     }
 
     @Override
-    public void loginUserAsync(String email, String password, RepositoryCallback<User> callback) {
-        loginRepository.loginAsync(
-                new LoginUser(email, password),
-                data -> {
-                    List<User> users = userRepository.getAll();
-                    if (users.size() != 0) {
-                        userRepository.deleteAll();
-                    }
-                    if (data instanceof GenericNetworkResponse.Success) {
-                        User user = new User();
-                        user.email = email;
-                        user.password = password;
-                        userRepository.insert(user);
-                        callback.onComplete(user);
-                    }
-                }
-        );
+    public void loginUserAsync(String email, String password, RepositoryCallback<Boolean> callback) {
+        User user = new User(email, password);
+        this.executor.execute(() -> {
+            try {
+               GenericNetworkResponse<AuthenticationResponse> response = loginUserSync(user);
+               if (response instanceof GenericNetworkResponse.Success) {
+                   this.userRepository.insert(user);
+                   callback.onComplete(true);
+               } else {
+                   Log.d("responsestat", response.toString());
+                   callback.onComplete(false);
+               }
+            } catch (IOException e) {
+                Log.d("responseerror", e.toString());
+                callback.onComplete(false);
+            }
+        });
     }
 
-    private void getCurrentUserorNullSync(RepositoryCallback<User> action) {
-        List<User> users = userRepository.getAll();
-        if (users.size() == 0) {
-            action.onComplete(null);
-        } else {
-            action.onComplete(users.get(0));
+    private GenericNetworkResponse<AuthenticationResponse> loginUserSync(User user) throws IOException {
+        Call<AuthenticationResponse> callApi = api.authenticate(user);
+        Response<AuthenticationResponse> response = callApi.execute();
+        Log.d("response_og", "" + response.message());
+        if (response.isSuccessful() && response.body().status.equals("success")) {
+            return new GenericNetworkResponse.Success<>(response.body());
         }
+        return new GenericNetworkResponse.Error<>(response.message());
     }
 
     @Override
     public void getCurrentUserOrNullAsync(RepositoryCallback<User> action) {
-        executor.execute(() -> getCurrentUserorNullSync(action));
     }
 
     @Override
     public void verifyCurrentCachedUserAsync(RepositoryCallback<Boolean> action) {
-        executor.execute(
+        User user = this.userRepository.getCurrent();
+        if (user == null) {
+            action.onComplete(false);
+            return;
+        }
+        this.executor.execute(
                 () -> {
-                    getCurrentUserorNullSync(
-                            user -> {
-                                if (user == null) {
-                                    action.onComplete(false);
-                                } else {
-                                    loginRepository.loginAsync(
-                                            new LoginUser(user.email, user.password),
-                                            networkResponse -> {
-                                                if (networkResponse instanceof GenericNetworkResponse.Success) {
-                                                    action.onComplete(true);
-                                                } else {
-                                                    action.onComplete(false);
-                                                }
-                                            }
-                                    );
-                                }
-                            }
-                    );
+                    try {
+                        GenericNetworkResponse<AuthenticationResponse> response = loginUserSync(user);
+                        if (response instanceof  GenericNetworkResponse.Success) {
+                            action.onComplete(true);
+                        } else {
+                            action.onComplete(false);
+                        }
+                    } catch (IOException e) {
+                        action.onComplete(false);
+                    }
                 }
         );
     }
 
     @Override
     public void logoutCurrentUser() {
-        executor.execute(userRepository::deleteAll);
+        this.userRepository.deleteAll();
     }
 }

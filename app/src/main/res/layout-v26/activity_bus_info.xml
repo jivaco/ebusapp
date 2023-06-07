@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:padding="16dp"
+    android:background="@color/white"
     tools:context=".BusInfo">
 
     <TextView
@@ -16,102 +16,101 @@
         android:layout_marginTop="18dp"
         android:gravity="top"
         android:text="@string/bus_info"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/card_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:elevation="10dp"
-        android:paddingHorizontal="4dp"
-        android:paddingVertical="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/businfo">
+        app:layout_constraintTop_toBottomOf="@+id/businfo"
+        android:elevation="10dp"
+        android:background="@color/white"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="16dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/driver"
-            style="@style/roundedImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:layout_width="144dp"
             android:layout_height="147dp"
-            android:src="@drawable/ellipse_1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            style="@style/roundedImageView"
+            android:src="@drawable/ellipse_1"/>
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/conductor"
-            style="@style/roundedImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/driver"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="50dp"
             android:layout_width="105dp"
             android:layout_height="107dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="24dp"
-            android:src="@drawable/ellipse_2"
-            app:layout_constraintStart_toEndOf="@+id/driver"
-            app:layout_constraintTop_toTopOf="parent" />
+            style="@style/roundedImageView"
+            android:src="@drawable/ellipse_2"/>
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/driver_lbl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="45dp"
-            android:layout_marginTop="8dp"
             android:text="@string/driver_lbl"
-            android:textSize="16sp"
             android:textStyle="bold"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/driver" />
+            app:layout_constraintTop_toBottomOf="@id/driver"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="8dp" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/conductor_lbl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="8dp"
             android:text="@string/conductor_lbl"
-            android:textSize="16sp"
             android:textStyle="bold"
+            android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@id/driver_lbl"
-            app:layout_constraintTop_toBottomOf="@id/driver" />
+            app:layout_constraintTop_toBottomOf="@id/driver"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="8dp" />
 
         <TextView
-            android:id="@+id/driver_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:paddingHorizontal="16dp"
+            android:id="@+id/driver_details"
             android:text="@string/driver_details_desc"
-            android:textSize="16sp"
             android:textStyle="bold"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/driver_lbl" />
+            app:layout_constraintTop_toBottomOf="@id/driver_lbl"
+            android:paddingHorizontal="16dp"
+            android:layout_marginTop="8dp" />
 
         <ImageView
             android:id="@+id/bus_pic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/sample_bus"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:src="@drawable/sample_bus"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/driver_details" />
 
         <TextView
-            android:id="@+id/vehicle_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:id="@+id/vehicle_number"
             android:text="@string/vehicle_number"
-            android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bus_pic" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bus_pic"
+            android:layout_marginTop="8dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <Button
         android:id="@+id/start_trip"
         style="@style/custom_btn"
@@ -120,4 +119,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_content" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

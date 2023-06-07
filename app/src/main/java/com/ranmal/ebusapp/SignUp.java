@@ -21,6 +21,7 @@ public class SignUp extends AppCompatActivity {
     private EditText emailInput;
     private EditText mobileInput;
     private EditText passwordInput;
+    private EditText confirmPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +45,12 @@ public class SignUp extends AppCompatActivity {
         };
         model.getRegistrationMessage().observe(this, registrationMessageObserver);
         // Hook up event handlers
-        fullnameInput = (EditText) findViewById(R.id.fullname);
-        emailInput = (EditText) findViewById(R.id.emailid);
-        mobileInput = (EditText) findViewById(R.id.mobile);
-        passwordInput = (EditText) findViewById(R.id.password);
-        Button register = (Button) findViewById(R.id.register);
+        fullnameInput = findViewById(R.id.fullname);
+        emailInput = findViewById(R.id.emailid);
+        mobileInput = findViewById(R.id.mobile);
+        passwordInput = findViewById(R.id.password);
+        confirmPassword = findViewById(R.id.confirm_password);
+        Button register = findViewById(R.id.register);
         register.setOnClickListener(view -> registerUser());
     }
 
@@ -56,7 +58,12 @@ public class SignUp extends AppCompatActivity {
         String fullname = fullnameInput.getText().toString();
         String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
+        String confirmPass = confirmPassword.getText().toString();
         String mobileString = mobileInput.getText().toString();
+        if (!password.equals(confirmPass)) {
+            Toast.makeText(getApplicationContext(), "Passwords don't match!", Toast.LENGTH_LONG).show();
+            return;
+        }
         long mobile = Long.parseLong(mobileString.equals("") ? "1" : mobileString);
         model.makeRegistrationRequest(
                 fullname,

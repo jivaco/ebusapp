@@ -1,13 +1,11 @@
 package com.ranmal.ebusapp.repositories;
 
-import com.ranmal.ebusapp.database.User;
-
-import java.util.List;
+import com.ranmal.ebusapp.schemas.User;
 
 public interface UserRepository {
     void insert(User user);
 
-    List<User> getAll();
+    User getCurrent();
 
     User findByEmail(String email);
 

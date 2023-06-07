@@ -5,10 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.ranmal.ebusapp.database.DatabaseContract;
-import com.ranmal.ebusapp.database.User;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.ranmal.ebusapp.schemas.User;
 
 public class UserRepositoryImplementation implements UserRepository {
 
@@ -27,24 +24,37 @@ public class UserRepositoryImplementation implements UserRepository {
     }
 
     @Override
-    public List<User> getAll() {
+    public User getCurrent() {
         Cursor result = db.query(DatabaseContract.Metadata.TABLE_NAME, DatabaseContract.Metadata.COLS, null, null, null, null, DatabaseContract.SQL.SORT_ASC);
-        List<User> users = new ArrayList<>();
         int email_col_index = result.getColumnIndex(DatabaseContract.Metadata.COL_EMAIL);
         int pw_col_index = result.getColumnIndex(DatabaseContract.Metadata.COL_PW);
-        for (result.moveToFirst(); !result.isAfterLast(); result.moveToNext()){
-            User user = new User();
-            user.email = result.getString(email_col_index);
-            user.password = result.getString(pw_col_index);
-            users.add(user);
+        User user = null;
+        if (result.moveToFirst()) {
+            String email = result.getString(email_col_index);
+            String password = result.getString(pw_col_index);
+            user = new User(email, password);
         }
-        result.close();
-        return users;
+        return user;
     }
 
     @Override
     public User findByEmail(String email) {
-        return null;
+        Cursor result = db.query(
+                DatabaseContract.Metadata.TABLE_NAME,
+                DatabaseContract.Metadata.COLS,
+                DatabaseContract.Metadata.COL_EMAIL + "=?",
+                new String[] {email},
+                null,
+                null,
+                DatabaseContract.SQL.SORT_ASC
+        );
+        int pw_col_index = result.getColumnIndex(DatabaseContract.Metadata.COL_PW);
+        User user = null;
+        if (result.moveToFirst()) {
+            String password = result.getString(pw_col_index);
+            user = new User(email, password);
+        }
+        return user;
     }
 
     @Override
